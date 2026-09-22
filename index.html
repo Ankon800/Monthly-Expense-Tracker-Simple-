@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FlowFunds — Finance Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main class="app-shell">
+  <aside class="sidebar">
+    <a class="brand" href="#"><i>↗</i> flow<span>funds</span></a>
+    <nav><button class="nav-item active" data-view="dashboard">⌂ <b>Overview</b></button><button class="nav-item" data-view="expenses">▤ <b>Expenses</b></button><button class="nav-item" data-view="invoices">▧ <b>Invoices</b></button></nav>
+    <p class="privacy">⌁ &nbsp;Your data stays<br>&nbsp;&nbsp;&nbsp;&nbsp;on this device.</p>
+  </aside>
+  <section class="content">
+    <header class="topbar"><div><p class="eyebrow" id="today-label"></p><h1 id="page-title">A clear view of your money.</h1></div><button class="primary-button" id="add-expense">+ Add expense</button></header>
+    <div id="dashboard-view" class="view active-view">
+      <section class="month-bar"><div><p class="eyebrow">Current period</p><div class="month-picker"><button id="previous-month">‹</button><h2 id="month-title"></h2><button id="next-month">›</button></div></div><button class="balance-trigger" id="set-balance"><i>৳</i><span><small>Starting balance</small><strong id="starting-balance">৳0.00</strong></span> ✎</button></section>
+      <section class="summary-grid">
+        <article class="summary-card accent"><p>◒ &nbsp; Money left</p><strong id="money-left">৳0.00</strong><small id="left-context">Set a starting balance to begin</small><div class="meter"><span id="balance-meter"></span></div></article>
+        <article class="summary-card"><p>↗ &nbsp; Total expenses</p><strong id="total-expenses">৳0.00</strong><small id="expense-count">No expenses this month</small></article>
+        <article class="summary-card"><p>◈ &nbsp; Daily average</p><strong id="daily-average">৳0.00</strong><small>Across days with expenses</small></article>
+      </section>
+      <section class="dashboard-lower">
+        <article class="panel"><p class="eyebrow">This month</p><h2>Spending by category</h2><div class="category-chart" id="category-chart"></div><div class="legend" id="category-legend"></div></article>
+        <article class="panel"><div class="panel-head"><div><p class="eyebrow">Latest activity</p><h2>Recent expenses</h2></div><button class="text-button" data-view-target="expenses">See all</button></div><div id="recent-list"></div></article>
+      </section>
+    </div>
+    <div id="expenses-view" class="view"><section class="list-heading"><div><p class="eyebrow">Expense history</p><h2>Every expense, in one place.</h2></div><label>Viewing <input type="month" id="month-filter"></label></section><section class="panel table-panel" id="expense-table"></section></div>
+    <div id="invoices-view" class="view"><section class="list-heading"><div><p class="eyebrow">Your documents</p><h2>Invoice library.</h2></div></section><section class="invoice-grid" id="invoice-grid"></section></div>
+  </section>
+</main>
+<dialog id="expense-dialog"><form id="expense-form"><header><div><p class="eyebrow">New entry</p><h2>Add an expense</h2></div><button type="button" class="close-button" id="close-expense">×</button></header><div class="form-grid"><label>Description<input required name="description" placeholder="e.g. Weekly groceries" maxlength="60"></label><label>Amount (৳)<input required name="amount" type="number" min=".01" step=".01" placeholder="0.00"></label><label>Category<select name="category"><option>Food</option><option>Expenses</option></select></label><label>Date<input required name="date" type="date"></label><label class="wide">Invoice (optional)<input name="invoice" type="file" accept="application/pdf,image/jpeg,image/png,image/heic,image/heif,.heic,.heif"><small id="file-name">PDF, JPEG, PNG, or HEIC</small></label></div><footer><button type="button" class="secondary-button" id="cancel-expense">Cancel</button><button class="primary-button">Save expense</button></footer></form></dialog>
+<dialog id="balance-dialog"><form id="balance-form"><header><div><p class="eyebrow">Monthly plan</p><h2>Starting balance</h2></div><button type="button" class="close-button" id="close-balance">×</button></header><p class="modal-copy">How much money did you have at the beginning of <b id="balance-month"></b>?</p><label>Amount (৳)<input required name="balance" type="number" min="0" step=".01" placeholder="0.00"></label><footer><button type="button" class="secondary-button" id="cancel-balance">Cancel</button><button class="primary-button">Save balance</button></footer></form></dialog>
+<script src="app.js"></script>
+</body></html>
+
